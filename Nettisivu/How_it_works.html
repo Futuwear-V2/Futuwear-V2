@@ -1,0 +1,97 @@
+﻿<!DOCTYPE HTML>
+<!--
+    Stellar by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Futuwear V2 - How it works</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+<body>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1>How it works</h1>
+            <p>The Futuwear V2</p>
+        </header>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Content -->
+            <section id="content" class="main">
+                <span class="image"><img src="images/MPU-9250_IRL.jpg" alt="" width="434" height="290" hspace="20" /></span>
+                <span class="image"><img src="images/Magnetometer_test.jpg" alt="" width="513" height="290" hspace="20" /></span>
+                <span class="image"><img src="images/PCB_Front.jpg" alt="" width="223" height="290" hspace="20"/></span>
+                <h2>The MCU (Main Processor Unit)</h2>
+                <p>The main processor unit comprises of the ESP32-WROOM module from espressiff. The power of the MCU is far greater than any AVR solution and even integrates a built-in WiFi antenna. The main PCB also houses the LDO, LiPo connector, Battery protection circuit, USB-serial converter and USB-ports, which are all needed for nominal performance. The size of the main PCB has been reduced to a remarkable 61x50mm enclosure to ensure the best esthetics and comfort we can accomplish without compromises.</p>
+                <p>The MCU connects to external IMU sensors right off the board, with the help of snap fasteners, to ensure easy attachment and deattachment of the MCU itself from the smart clothing. </p>
+                <h2>The IMUs (Inertial Measurement Unit)</h2>
+                <p>The inertial measurement units (or IMUs for short) are state of the are 9 DoF (Degrees of Freedom) sensors which make it possible to precisely map the movements of the user and deliver reliable information to the server. The IMUs used in this product are the MPU-9250s from Sparkfun and their 3D-printed enclosure ensures that the precious sensors are safe and sound from external sources.</p>
+                <h3>The Web Interface</h3>
+                <p>
+                    The Web interface makes it possible to remotely control a 3D-object in real-time with the help of the smart clothing. The MCU utilizes the web socket protocol to directly communicate with the web interface. Instant 
+                </p>
+                <span class="image main">
+                    <img alt="" src="images/torso_interface.png"></img>
+                </span>
+                <p>
+                    As the image above illustrates, the web interface is very dymanic and easy to use. Set up everything and the smart clothing is sending data directly to the interface, which processes the information. The model replicates the exact movements of the user in real-time.
+                </p>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <section>
+                <h2>I am tired</h2>
+                <p>I don't really know what to write here so diddly.</p>
+                <ul class="actions">
+                    <li><a href="#" class="button">Learn More</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Etiam feugiat</h2>
+                <dl class="alt">
+                    <dt>Address</dt>
+                    <dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
+                    <dt>Phone</dt>
+                    <dd>(000) 000-0000 x 0000</dd>
+                    <dt>Email</dt>
+                    <dd><a href="#">information@untitled.tld</a></dd>
+                </dl>
+                <ul class="icons">
+                    <li><a href="#" class="icon fa-twitter alt"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon fa-facebook alt"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon fa-instagram alt"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="icon fa-github alt"><span class="label">GitHub</span></a></li>
+                    <li><a href="#" class="icon fa-dribbble alt"><span class="label">Dribbble</span></a></li>
+                </ul>
+            </section>
+            <p class="copyright">&copy; Bruce Clayhills. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>
