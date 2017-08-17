@@ -26,6 +26,17 @@
             <p>The Futuwear V2</p>
         </header>
 
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="#MCU" class="active">MCU</a></li>
+                <li><a href="#IMU">IMUs</a></li>
+                <li><a href="#WEB">Web interface</a></li>
+                <li><a href="#Clothing">Clothing</a></li>
+                <li><a href="#Cases">Cases</a></li>
+            </ul>
+        </nav>
+
         <!-- Main -->
         <div id="main">
 
@@ -38,39 +49,67 @@
                         <div class="3u$"><span class="image fit"><img src="images/PCB_Front.jpg" alt="" /></span></div>
                     </div>
                 </div>
-                <h2><b>MCU (Main Processor Unit)</b></h2>
-                <p>The main processor unit comprises of the ESP32-WROOM module from espressiff. The power of the MCU is far greater than any AVR solution and even integrates a built-in WiFi antenna. The main PCB also houses the LDO, LiPo connector, Battery protection circuit, USB-serial converter and USB-ports, which are all needed for nominal performance. The size of the main PCB has been reduced to a remarkable 61x50mm (2.40x1.97 inch) enclosure to ensure the best esthetics and comfort we can accomplish without compromises.</p>
-                <p>The MCU connects to external IMU sensors right off the board, with the help of snap fasteners, to ensure easy attachment and deattachment of the MCU itself from the smart clothing. </p>
-                
-                <h2><b>IMUs (Inertial Measurement Unit)</b></h2>
-                <p>The inertial measurement units (or IMUs for short) are state of the art 9 DoF (Degrees of Freedom) sensors which make it possible to precisely map the movements of the user and deliver reliable information to the server. The IMUs used in this product are the MPU-9250s from Sparkfun and their 3D-printed enclosure ensures that the precious sensors are safe and sound from external sources.</p>
-                <h2><b>The Web Interface</b></h2>
-                <p>
-                    The ESP32-WROOM first connects to the domain where the website is hosted (in this case Aalto University) using the web socket protocol, then the data is processed on the server and
-                    sent to the browser through another web socket protocol to a web interface, where it is used to control a 3D model of a torso. 
-                </p>
-                <span class="image main">
-                    <img alt="" src="images/torso_interface.png"></img>
-                </span>
-                <p>
-                    As the image above illustrates, the web interface is very dymanic and easy to use. Set up everything and the smart clothing is sending data directly to the interface, which processes the information. The model replicates the exact movements of the user in real-time.
-                </p>
-                <h2><b>The Clothing</b></h2>
-                <p>
-                    The clothing uses an elastic and breathing material as the base of the wearable. It is comfortable to wear and tight enough that it provides a good base for the sensors. The MCU connects to the clothing itself with the help of snap fasteners, to where wires have been routed in the fabric of the clothing itself.
-                    The MCU is located in the pocket of the clothing, which makes removing and using the MCU easy and convienient. 
-                </p>
-                <p>
-                    The sensors connect to the clothing itself, using bands made from strethcing fabric and valcro and with the same snap fasteners as the MCU. This makes them modular and easily removable,
-                    to make the shirt washable, without the external sensors. This design also makes it possible to for example only use two sensors to map the movements of one arm,
-                    if the user doesn't have 5 sensors in total.
-                </p>
-                <h2><b>The Cases</b></h2>
-                <p>
-                    The clothing houses the MCU PCB as well as the IMUs in 3D printed enclosures. These were custom designed specifically in SketchUp, to ensure that the openings and sizes are correct and sleek for our applications. All the material, including
-                    the 3D-models are available on the project's GitHub page.
-                </p>
-            </section>
+                <section id="MCU" class="main special">
+                    <header class="major">
+                        <h2><b>MCU (Main Processor Unit)</b></h2>
+                    </header>
+                    <p>The main processor unit comprises of the ESP32-WROOM module from espressiff. The power of the MCU is far greater than any AVR solution and even integrates a built-in WiFi antenna. The main PCB also houses the LDO, LiPo connector, Battery protection circuit, USB-serial converter and USB-ports, which are all needed for nominal performance. The size of the main PCB has been reduced to a remarkable 61x50mm (2.40x1.97 inch) enclosure to ensure the best esthetics and comfort we can accomplish without compromises.</p>
+                    <p>The MCU connects to external IMU sensors right off the board, with the help of snap fasteners, to ensure easy attachment and deattachment of the MCU itself from the smart clothing.  <br /> </p>
+                </section>
+
+                <section id="IMU" class="main special">
+                    <header class="major">
+                        <h2><b>IMUs (Inertial Measurement Unit)</b></h2>
+                    </header>
+                            <p>The inertial measurement units (or IMUs for short) are state of the art 9 DoF (Degrees of Freedom) sensors which make it possible to precisely map the movements of the user and deliver reliable information to the server. The IMUs used in this product are the MPU-9250s from Sparkfun and their 3D-printed enclosure ensures that the precious sensors are safe and sound from external sources.
+                                <br />
+                    </p>
+</section>
+
+                <section id="WEB" class="main special">
+                    <header class="major">
+                        <h2><b>The Web Interface</b></h2>
+                    </header>
+                        <p>
+                            The ESP32-WROOM first connects to the domain where the website is hosted (in this case Aalto University) using the web socket protocol, then the data is processed on the server and
+                            sent to the web interface (in the browser) through another web socket protocol, where the data is used to control a 3D model of a torso.
+                        </p>
+                        <span class="image main">
+                            <img alt="" src="images/torso_interface.png"></img>
+                        </span>
+                        <p>
+                            As the image above illustrates, the web interface is very dymanic and easy to use. Set up everything and the smart clothing is sending data directly to the interface, which processes the information. Then the model replicates the exact movements of the user in real-time.
+                            <br />
+                        </p>
+
+</section>
+                <section id="Clothing" class="main special">
+                    <header class="major">
+                        <h2><b>The Clothing</b></h2>
+                    </header>
+                        <p>
+                            The clothing uses an elastic and breathing material as the base of the wearable. It is comfortable to wear and tight enough that it provides a good base for the sensors. The MCU connects to the clothing itself with the help of snap fasteners, to which wires have been routed through the fabric of the clothing itself.
+                            The MCU is located in the pocket of the clothing, which makes removing and using the MCU easy and convienient.
+                        </p>
+                        <p>
+                            <span class="image right"><img src="images/imu_pouch.jpg" alt="" /></span>
+                            The sensors connect to the clothing itself, using bands made from strethcing fabric and velcro and with the same snap fasteners as the MCU. This makes them modular and easily removable,
+                            so that the shirt can be machine-washed, without harming the sensitive electronics. This design also makes it possible to, for example only use two sensors to map the movements of one arm,
+                            if the user doesn't have 5 sensors in total. This offers flexability to the end user, if he/she doesn't want to invest in more sensors.
+                        <br /> <br /> <br />
+                        </p>
+
+</section>
+                <section id="Cases" class="main special">
+                    <header class="major">
+                        <h2><b>The Cases</b></h2>
+                    </header>
+                        <p>
+                            The clothing houses the MCU PCB as well as the IMUs in 3D printed enclosures. These were custom designed specifically in SketchUp, to ensure that the openings and sizes are correct and sleek for our applications. All the material, including
+                            the 3D-models are available on the project's GitHub page.
+                        </p>
+</section>
+                </section>
         </div>
 
         <!-- Footer -->
@@ -87,13 +126,13 @@
                 </ul>
             </section>
             <section>
-                <h2>Find out more:</h2>
+                <h2>Find out more (only on desktop):</h2>
                 <p>Press the mysterious button. <br /> Don't be afraid, <br /> the button is your friend.</p>
                 <ul class="actions">
                     <li><a href="https://protopaja.aalto.fi/futuricec/demo/" class="button">Mysterious button</a></li>
                 </ul>
             </section>
-            <p class="copyright">&copy; Bruce Clayhills <br /> Design: <a href="https://html5up.net">HTML5 UP</a></p>
+            <p class="copyright">&copy; Bruce Clayhills Design: <a href="https://html5up.net">HTML5 UP</a></p>
         </footer>
     </div>
 
