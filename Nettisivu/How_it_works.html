@@ -53,8 +53,29 @@
                     <header class="major">
                         <h2><b>MCU (Main Processor Unit)</b></h2>
                     </header>
-                    <p>The main processor unit comprises of the ESP32-WROOM module from espressiff. The power of the MCU is far greater than any AVR solution and even integrates a built-in WiFi antenna. The main PCB also houses the LDO, LiPo connector, Battery protection circuit, USB-serial converter and USB-ports, which are all needed for nominal performance. The size of the main PCB has been reduced to a remarkable 61x50mm (2.40x1.97 inch) enclosure to ensure the best esthetics and comfort we can accomplish without compromises.</p>
-                    <p>The MCU connects to external IMU sensors right off the board, with the help of snap fasteners, to ensure easy attachment and deattachment of the MCU itself from the smart clothing.  <br /> </p>
+                    <p> <span class="image right"><img src="images/mcu_finished_front.jpg" alt="" /></span>
+                    The main processor unit comprises of the ESP32-WROOM module from espressiff. The power of the MCU is far greater than any AVR solution and even integrates a built-in WiFi antenna. The main PCB also houses the LDO, 
+                    LiPo connector, Battery protection circuit, charger, USB-serial converter and the USB-port, which are all needed for nominal performance. The size of the main PCB has been reduced to a remarkable 61x50mm (2.40x1.97 inch) 
+                    enclosure to ensure the best esthetics and comfort we can accomplish without compromises. 
+                    </p>
+
+                    <p>
+                        The LDO (or Low-dropout regulator) is a device, that drops the voltage of the LiPo battery to the required 3.3V of the main circuit (the MCU and USB to serial converter). It offers low voltage drops and excellent efficiency
+                        so that we can extend the functioning time of the board with the LiPo pack. <br /> <br />
+                        
+                        The Battery protection circuit (BQ29733DSER) ensures that the voltage of the LiPo battery doesn't fall below the dangerous 3.0V LiPo limit, after which one cell LiPo batteryies tend to be irreversably damaged. The Battery protection circuit also
+                        also disconnects the N-channel MOSFETs from delivering current to the board in case of a fault in one of the components or a short circuit on the board. <br /> <br />
+
+                        The charger (MCP73831) makes it possible to charge the LiPo battery, while it's connected to the board, with the USB port. The circuit easily handles 5.0V, so it can be charged and powered from a computers USB hub. 
+                        The MCP73831 is a programmable charger, which delivers 500mA to the battery pack. The charger communicates with the BQ29733DSER, so that it knows when the battery is being charged and activates the MOSFETs. The charger
+                        also has a status indicator LED, which lights up when the battery is charged to its maximum. <br /> <br />
+
+                        The USB-to-Serial converter (CP2102-GM) makes communication and programming the ESP32 WROOM module possible. The datalines of the USB are converted into serial, which enables the user to program the chip. <br />
+                    </p>
+
+                    <p>
+                    The MCU connects to external IMU sensors right off the board, with the help of snap fasteners, to ensure easy attachment and deattachment of the MCU itself from the smart clothing.  <br /> 
+                    </p>
                 </section>
 
                 <section id="IMU" class="main special">
@@ -95,21 +116,30 @@
                             The clothing uses an elastic and breathing material as the base of the wearable. It is comfortable to wear and tight enough that it provides a good base for the sensors. The MCU connects to the clothing itself with the help of snap fasteners, to which wires have been routed through the fabric of the clothing itself.
                             The MCU is located in the pocket of the clothing, which makes removing and using the MCU easy and convienient.
                         </p>
+                    <p>
+                        <span class="image left"><img src="images/clothing_back.jpg" alt="" /></span>
+                        The main clothing is a white SOC branded hoodie with a zipper. The design of the clothing itself and the fact that it has a zipper, made it possible to easily sow the traces into the fabric itself.
+                        Also it is easier to put on, when the user doesn't have to worry about damaging any connections of the clothing. The connections are secured with extra padding material, 
+                        so that it's possible to wear the clothing as a normal hoodie without the fear of any inner connections breaking or shorting out.
+                        The main MCU board is located on the back-side of the user and the traces are routed conviniently through the back of the clothing to all the sensors. We made a case for the MCU and LiPo battery, which is secured in a pouch,
+                        so that the rough edges of the case don't distrb or hurt the user. <br /> <br />The fabric feels also nice and the clothing is comfortable to wear, even for extended periods, which improves the usability of the smart clothing during a course of a day.
+                        
+                    </p>
                         <p>
                             <span class="image right"><img src="images/imu_pouch.jpg" alt="" /></span>
                             The sensors connect to the clothing itself, using bands made from strethcing fabric and velcro and with the same snap fasteners as the MCU. This makes them modular and easily removable,
                             so that the shirt can be machine-washed, without harming the sensitive electronics. This design also makes it possible to, for example only use two sensors to map the movements of one arm,
-                            if the user doesn't have 5 sensors in total. This offers flexability to the end user, if he/she doesn't want to invest in more sensors.
-                        <br /> <br /> <br />
+                            if the user doesn't have 5 sensors in total. This offers flexability to the end user, if they don't want to invest in more sensors.
+                        <br />
                         </p>
-
+                  
 </section>
                 <section id="Cases" class="main special">
                     <header class="major">
                         <h2><b>The Cases</b></h2>
                     </header>
                         <p>
-                            The clothing houses the MCU PCB as well as the IMUs in 3D printed enclosures. These were custom designed specifically in SketchUp, to ensure that the openings and sizes are correct and sleek for our applications. All the material, including
+                            The clothing houses the MCU PCB as well as the IMUs in 3D printed enclosures. These were custom designed specifically in SketchUp, to ensure that the openings and sizes are correct and sleek for our applications. All the materials, including
                             the 3D-models are available on the project's GitHub page.
                         </p>
 </section>
