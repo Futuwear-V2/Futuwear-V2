@@ -63,14 +63,15 @@
                         The LDO (or Low-dropout regulator) is a device, that drops the voltage of the LiPo battery to the required 3.3V of the main circuit (the MCU and USB to serial converter). It offers low voltage drops and excellent efficiency
                         so that we can extend the functioning time of the board with the LiPo pack. <br /> <br />
                         
-                        The Battery protection circuit (BQ29733DSER) ensures that the voltage of the LiPo battery doesn't fall below the dangerous 3.0V LiPo limit, after which one cell LiPo batteryies tend to be irreversably damaged. The Battery protection circuit also
-                        also disconnects the N-channel MOSFETs from delivering current to the board in case of a fault in one of the components or a short circuit on the board. <br /> <br />
+                        The Battery protection circuit (BQ29733DSER) ensures that the voltage of the LiPo battery doesn't fall below the dangerous 3.0V LiPo limit, after which one cell LiPo batteries tend to be irreversibly damaged. The Battery protection circuit also
+                        disconnects the N-channel MOSFETs from delivering current to the board in case of a fault in one of the components or a short circuit on the board. <br /> <br />
 
-                        The charger (MCP73831) makes it possible to charge the LiPo battery, while it's connected to the board, with the USB port. The circuit easily handles 5.0V, so it can be charged and powered from a computers USB hub. 
+                        The charger (MCP73831) makes it possible to charge the LiPo battery, while it's connected to the board, via the USB port. The circuit easily handles 5.0V, so it can be charged and powered from a computer's USB hub. 
                         The MCP73831 is a programmable charger, which delivers 500mA to the battery pack. The charger communicates with the BQ29733DSER, so that it knows when the battery is being charged and activates the MOSFETs. The charger
                         also has a status indicator LED, which lights up when the battery is charged to its maximum. <br /> <br />
 
-                        The USB-to-Serial converter (CP2102-GM) makes communication and programming the ESP32 WROOM module possible. The datalines of the USB are converted into serial, which enables the user to program the chip. <br />
+                        The USB to Serial converter (CP2102-GM) makes communication and programming of the ESP32 WROOM module possible. The datalines of the USB are converted into serial, which enables the user to program the chip. 
+                        The converter also sends out an indication voltage, which lets the computer know that a successful USB connection has been established with the host device.<br />
                     </p>
 
                     <p>
@@ -82,12 +83,12 @@
                     <header class="major">
                         <h2><b>IMUs (Inertial Measurement Unit)</b></h2>
                     </header>
-                            <p>
-                                The inertial measurement units (or IMUs for short) are state of the art 9 DoF (Degrees of Freedom) sensors which make it possible to precisely map the movements of the user and deliver reliable information to the server. The IMUs used in this product are the MPU-9250s from Sparkfun and their 3D-printed enclosure ensures that the precious sensors are safe and sound from external sources.
-                            </p>
-                    <p>
-                        The IMUs have a acelerometer, gyroscope and a magnetometer, all in a small package. Every gyroscopic sensor experiences drift overtime, and this drift can be recalibrated and fixed with the data coming in from the accelerometer. However in cases, which the the sensor (and the user) is moving, the accelerometer experiences 'vibrations' which make it's data useless in recalibrating the gyros
-                        when the subject is in movement. This problem is overcome with the help of a magnetometer, which gives us the exact orientation of the sensor so that recalibration is possible and the clothing can continue to deliver accurate sensory data for a prolonged period of time. <br />
+                     <p>
+                        The inertial measurement units (or IMUs for short) are state of the art 9 DoF (Degrees of Freedom) sensors which make it possible to precisely map the movements of the user and deliver reliable information to the server. The IMUs used in this product are the MPU-9250s from Sparkfun and their 3D-printed enclosure ensures that the precious sensors are safe and sound from external sources. 
+                         They also ensure low current consumption, with an average current draw of about 4mA during normal usage.
+                        <br /> <br />    
+                        The IMUs have an acelerometer, gyroscope and a magnetometer, all in a small package. Every gyroscopic sensor experiences drift overtime, and this drift can be recalibrated and fixed with the data coming in from the accelerometer. However in such cases, in which the sensor (and the user) are moving, the accelerometer experiences 'vibrations' which make its data useless in recalibrating the gyros
+                        when the subject is in movement. This problem is overcome with the help of a magnetometer, which gives us the exact orientation of the sensor at all times, so that recalibration is possible and the clothing can continue to deliver accurate sensory data for a prolonged period of time. <br />
                     </p>
 </section>
 
@@ -103,7 +104,8 @@
                             <img alt="" src="images/torso_interface.png"></img>
                         </span>
                         <p>
-                            As the image above illustrates, the web interface is very dymanic and easy to use. Set up everything and the smart clothing is sending data directly to the interface, which processes the information. Then the model replicates the exact movements of the user in real-time.
+                            As the image above illustrates, the web interface is very dymanic and easy to use. Set up everything and the smart clothing is sending data directly to the interface, which processes the information.
+                            Then the model replicates the exact movements of the user in real-time*.
                             <br />
                         </p>
 
@@ -114,7 +116,7 @@
                     </header>
                         <p>
                             The clothing uses an elastic and breathing material as the base of the wearable. It is comfortable to wear and tight enough that it provides a good base for the sensors. The MCU connects to the clothing itself with the help of snap fasteners, to which wires have been routed through the fabric of the clothing itself.
-                            The MCU is located in the pocket of the clothing, which makes removing and using the MCU easy and convienient.
+                            The MCU is located on the backside of the clothing, which makes removing and using the MCU easy and convienient.
                         </p>
                     <p>
                         <span class="image left"><img src="images/clothing_back.jpg" alt="" /></span>
@@ -122,7 +124,9 @@
                         Also it is easier to put on, when the user doesn't have to worry about damaging any connections of the clothing. The connections are secured with extra padding material, 
                         so that it's possible to wear the clothing as a normal hoodie without the fear of any inner connections breaking or shorting out.
                         The main MCU board is located on the back-side of the user and the traces are routed conviniently through the back of the clothing to all the sensors. We made a case for the MCU and LiPo battery, which is secured in a pouch,
-                        so that the rough edges of the case don't distrb or hurt the user. <br /> <br />The fabric feels also nice and the clothing is comfortable to wear, even for extended periods, which improves the usability of the smart clothing during a course of a day.
+                        so that the rough edges of the case don't distrb or hurt the user. <br /> <br />
+                        
+                        The fabric itself also feels nice and the clothing is comfortable to wear, even for extended periods, which improves the usability of the smart clothing during a course of a day.
                         
                     </p>
                         <p>
@@ -149,13 +153,17 @@
         <!-- Footer -->
         <footer id="footer">
             <section>
+                <p>
+                    *Real-time performance is subjective, and every application utilizing wireless data transmission will inevitably experince some latency due to newtwork speeds and data processing.
+                </p>
+
                 <h2>Resources</h2>
                 <p>
                     Here are the resources and materials used in the project. Links to Aalto University, the projects GitHub page and Futurice Oy (The sponsoring company).
                 </p>
                 <ul class="icons">
                     <li><a target="_blank" href="https://www.aalto.fi/en" class="icon alt fa fa-graduation-cap"><span class="label">Aalto University</span></a></li>
-                    <li><a target="_blank" href="https://www.github.com/JPylkkanen/Futuwear-V2" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a target="_blank" href="https://github.com/Futuwear-V2/Futuwear-V2" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
                     <li><a target="_blank" href="https://www.futurice.com" class="icon alt fa-briefcase"><span class="label">Futurice</span></a></li>
                 </ul>
             </section>
