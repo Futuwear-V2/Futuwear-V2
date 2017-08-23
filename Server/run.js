@@ -1,0 +1,106 @@
+/*
+    Futuwear-V2 UDP server
+*/
+
+const options = {
+    httpPort      : 8080,
+    webSocketPort : 8081,
+    udpPort       : 8082,
+}
+
+const WebSocket = require("ws");
+const http = require('http');
+const finalhandler = require('finalhandler');
+const serveStatic = require('serve-static');
+const dgram = require('dgram');
+
+//const bones = ["L_Arm_Inner", "L_Arm_Outer", "R_Arm_Inner", "R_Arm_Outer", "Back_Upper"];
+const bones = ["L_Arm_Inner", "L_Arm_Outer", "R_Arm_Inner", "R_Arm_Outer", "N/A"];
+
+// Setup HTTP server
+const serve = serveStatic("./");
+const httpServer = http.createServer((request, response) => {
+    var done = finalhandler(request, response);
+    serve(request, response, done);
+}).listen(options.httpPort);
+
+// Report received message rate
+const wss = new WebSocket.Server({ port: options.webSocketPort });
+wss.on("connection", (client) => {
+    console.log("Client connected");
+
+    client.on("error", (err) => {
+        console.log("WebSocket server error: %s", err.message);
+    })
+
+    function message_handler(message)
+    {
+        console.log(message);
+        client.removeListener("message", message_handler);
+        if (message == "browser") {
+            console.log("Browser connected");
+        } else {
+            console.log("Unknown device tried to connect");
+            console.log("Received: \"%s\"", message);
+        }
+    }
+
+    client.on("message", message_handler);
+});
+
+// Setup UDP server
+const server = dgram.createSocket('udp4');
+server.on('error', (err) => {
+    console.log(`server error:\n${err.stack}`);
+    server.close();
+});
+
+var counter = 0;
+server.on('message', (message, rinfo) => {
+    counter++;
+    try {
+        var buf = new Buffer.from(message);
+        // console.log(buf);
+        for (var i = 0; i < 5; i++) {
+            var value = buf.readUInt32BE(0 + i * 4, 3 + i * 4);
+            var pitch = (value / (1625 * 1625)) * 360 / 1625 - 180;
+            var yaw   = ((value / 1625) % 1625) * 360 / 1625 - 180;
+            var roll  =  (value % 1625)         * 360 / 1625 - 180;
+
+            roll = roll + 180;
+            if (roll > 180)
+                roll = roll - 360;
+
+            var broadcastMessage = JSON.stringify({
+                "bone_name": bones[i],
+                "X": roll,
+                "Y": pitch,
+                "Z": 0,
+            });
+
+            // console.log(broadcastMessage);
+
+            wss.clients.forEach((client) => {
+                client.send(broadcastMessage);
+            });
+        }
+    }
+    catch (err) {
+        console.log(err.message);
+    }
+});
+
+function logMessageRate()
+{
+    console.log("Receiving %d messages per second", counter / 10);
+    counter = 0;
+    setTimeout(logMessageRate, 10000);
+}
+setTimeout(logMessageRate, 10000);
+
+server.on('listening', () => {
+    const address = server.address();
+    console.log(`server listening ${address.address}:${address.port}`);
+});
+
+server.bind(options.udpPort);
