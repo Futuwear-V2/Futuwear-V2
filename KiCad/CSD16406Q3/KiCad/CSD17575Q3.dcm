@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP CSD17575Q3
+D 30-V, N-Channel NexFET(TM) Power MOSFET  
+K
+F http://www.ti.com/lit/gpn/csd17575q3
+$ENDCMP
+#
+#End Doc Library

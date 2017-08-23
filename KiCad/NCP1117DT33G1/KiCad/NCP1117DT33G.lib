@@ -1,0 +1,27 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model NCP1117DT33G
+#/171079/15799/2.10/4/3/Integrated Circuit
+DEF NCP1117DT33G IC 0 30 Y Y 1 F N
+F0 "IC" 850 150 50 H V C CNN
+F1 "NCP1117DT33G" 850 -250 50 H V C CNN
+F2 "TO229P990X238-4N" 850 -350 50 H I C CNN
+F3 "http://www.onsemi.com/pub/Collateral/NCP1117-D.PDF" 850 -450 50 H I C CNN
+F4 "1A,3.3V,LDO Voltage Reg.,NCP1117DT33 NCP1117DT33G, Low Dropout Voltage Regulator, 1A, 3.3 V 1%, 3-Pin DPAK" 850 -550 50 H I C CNN "Description"
+F5 "RS" 850 -650 50 H I C CNN "Supplier_Name"
+F6 "1023504" 850 -750 50 H I C CNN "RS Part Number"
+F7 "ON Semiconductor" 850 -850 50 H I C CNN "Manufacturer_Name"
+F8 "NCP1117DT33G" 850 -950 50 H I C CNN "Manufacturer_Part_Number"
+F9 "70340549" 850 -1050 50 H I C CNN "Allied_Number"
+F10 "" 850 -1150 50 H I C CNN "Other Part Number"
+F11 "2.38" 1550 -1250 50 H I C CNN "Height"
+DRAW
+S 200 100 1500 -200 0 0 10 f
+X ADJUST/GROUND 1 0 0 200 R 50 50 0 0 U
+X OUTPUT(1) 2 0 -100 200 R 50 50 0 0 O
+X INPUT 3 1700 0 200 L 50 50 0 0 I
+X OUTPUT(2) 4 1700 -100 200 L 50 50 0 0 O
+ENDDRAW
+ENDDEF
+#
+#End Library

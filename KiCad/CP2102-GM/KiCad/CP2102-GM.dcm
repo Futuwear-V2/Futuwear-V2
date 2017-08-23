@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP CP2102-GM
+D CP2102-GM, USB Controller 12Mbit/s USB 2.0, 3.3 V, 28-Pin, QFN
+K
+F http://docs-europe.electrocomponents.com/webdocs/065a/0900766b8065a805.pdf
+$ENDCMP
+#
+#End Doc Library

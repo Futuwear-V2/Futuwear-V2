@@ -1,0 +1,28 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#
+# MCP73831T-2ATI_OT
+#
+DEF MCP73831T-2ATI_OT IC 0 30 Y Y 1 F N
+F0 "IC" 500 150 50 H V C CNN
+F1 "MCP73831T-2ATI_OT" 500 -350 50 H V C CNN
+F2 "SOT95P270X145-5N" 500 -450 50 H I C CNN
+F3 "http://docs-europe.electrocomponents.com/webdocs/1381/0900766b81381747.pdf" 500 -550 50 H I C CNN
+F4 "Microchip MCP73831T-2ATI/OT, Battery Charge Controller Lithium-Ion/Polymer, 500mA, 5-pin SOT-23" 500 -650 50 H I C CNN "Description"
+F5 "RS" 500 -750 50 H I C CNN "Supplier_Name"
+F6 "7386617P" 500 -850 50 H I C CNN "RS Part Number"
+F7 "Microchip" 500 -950 50 H I C CNN "Manufacturer_Name"
+F8 "MCP73831T-2ATI/OT" 500 -1050 50 H I C CNN "Manufacturer_Part_Number"
+F9 "70388655" 500 -1150 50 H I C CNN "Allied_Number"
+F10 "1.45" 850 -1350 50 H I C CNN "Height"
+DRAW
+S 200 100 800 -300 0 0 10 f
+X STAT 1 0 -200 200 R 50 50 0 0 U
+X VSS 2 1000 -200 200 L 50 50 0 0 W
+X VBAT 3 1000 0 200 L 50 50 0 0 U
+X VDD 4 0 0 200 R 50 50 0 0 W
+X PROG 5 1000 -100 200 L 50 50 0 0 U
+ENDDRAW
+ENDDEF
+#
+#End Library
