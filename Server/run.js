@@ -15,7 +15,13 @@ const serveStatic = require('serve-static');
 const dgram = require('dgram');
 
 //const bones = ["L_Arm_Inner", "L_Arm_Outer", "R_Arm_Inner", "R_Arm_Outer", "Back_Upper"];
-const bones = ["L_Arm_Inner", "L_Arm_Outer", "R_Arm_Inner", "R_Arm_Outer", "N/A"];
+const bones = [
+    {bone_name: "L_Arm_Inner", X: 0, Y: 0, Z: 0},
+    {bone_name: "L_Arm_Outer", X: 0, Y: 0, Z: 0},
+    {bone_name: "R_Arm_Inner", X: 0, Y: 0, Z: 0},
+    {bone_name: "R_Arm_Outer", X: 0, Y: 0, Z: 0},
+    {bone_name: "Back_Upper" , X: 0, Y: 0, Z: 0},
+];
 
 // Setup HTTP server
 const serve = serveStatic("./");
@@ -24,7 +30,7 @@ const httpServer = http.createServer((request, response) => {
     serve(request, response, done);
 }).listen(options.httpPort);
 
-// Report received message rate
+// Setup WebSocket server
 const wss = new WebSocket.Server({ port: options.webSocketPort });
 wss.on("connection", (client) => {
     console.log("Client connected");
@@ -60,8 +66,9 @@ server.on('message', (message, rinfo) => {
     counter++;
     try {
         var buf = new Buffer.from(message);
-        // console.log(buf);
         for (var i = 0; i < 5; i++) {
+            var bone = bones[i];
+
             var value = buf.readUInt32BE(0 + i * 4, 3 + i * 4);
             var pitch = (value / (1625 * 1625)) * 360 / 1625 - 180;
             var yaw   = ((value / 1625) % 1625) * 360 / 1625 - 180;
@@ -71,14 +78,25 @@ server.on('message', (message, rinfo) => {
             if (roll > 180)
                 roll = roll - 360;
 
-            var broadcastMessage = JSON.stringify({
-                "bone_name": bones[i],
-                "X": roll,
-                "Y": pitch,
-                "Z": 0,
-            });
+            if (i == 1 || i == 3) {
+                roll  = roll  - bones[i - 1].X;
+                pitch = pitch - bones[i - 1].Y;
+            }
+            /*
+            if (i < 4) {
+                roll  = roll  - bones[4].X;
+                pitch = pitch - bones[4].Y;
+            }
+            */
 
-            // console.log(broadcastMessage);
+            // If the values are unchanged, don't broadcast bone
+            if (bone.X == roll && bone.Y == pitch)
+                continue;
+
+            bone.X = roll;
+            bone.Y = pitch;
+
+            var broadcastMessage = JSON.stringify(bone);
 
             wss.clients.forEach((client) => {
                 client.send(broadcastMessage);
@@ -90,6 +108,14 @@ server.on('message', (message, rinfo) => {
     }
 });
 
+server.on('listening', () => {
+    const address = server.address();
+    console.log(`server listening ${address.address}:${address.port}`);
+});
+
+server.bind(options.udpPort);
+
+// Report received message rate every 10 seconds
 function logMessageRate()
 {
     console.log("Receiving %d messages per second", counter / 10);
@@ -97,10 +123,3 @@ function logMessageRate()
     setTimeout(logMessageRate, 10000);
 }
 setTimeout(logMessageRate, 10000);
-
-server.on('listening', () => {
-    const address = server.address();
-    console.log(`server listening ${address.address}:${address.port}`);
-});
-
-server.bind(options.udpPort);
