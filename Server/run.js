@@ -69,20 +69,26 @@ server.on('message', (message, rinfo) => {
         for (var i = 0; i < 5; i++) {
             var bone = bones[i];
 
+            // Process bytes received from the shirt into angles in degrees
             var value = buf.readUInt32BE(0 + i * 4, 3 + i * 4);
             var pitch = (value / (1625 * 1625)) * 360 / 1625 - 180;
             var yaw   = ((value / 1625) % 1625) * 360 / 1625 - 180;
             var roll  =  (value % 1625)         * 360 / 1625 - 180;
 
+            // Flip X axis, and make sure that the result value is between -180 and 180
             roll = roll + 180;
             if (roll > 180)
                 roll = roll - 360;
 
+            // Reduce rotation of the upper arm from the rotation of the lower arm,
+            // since the IMU values are relative to the starting point of the IMU,
+            // whereas the model uses rotation relative to the parent bone
             if (i == 1 || i == 3) {
                 roll  = roll  - bones[i - 1].X;
                 pitch = pitch - bones[i - 1].Y;
             }
             /*
+            // Reduce rotation of the back from the arms
             if (i < 4) {
                 roll  = roll  - bones[4].X;
                 pitch = pitch - bones[4].Y;
@@ -98,6 +104,7 @@ server.on('message', (message, rinfo) => {
 
             var broadcastMessage = JSON.stringify(bone);
 
+            // Broadcast message to all connected clients
             wss.clients.forEach((client) => {
                 client.send(broadcastMessage);
             });
