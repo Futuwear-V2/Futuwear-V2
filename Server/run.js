@@ -20,7 +20,8 @@ const bones = [
     {bone_name: "L_Arm_Outer", X: 0, Y: 0, Z: 0},
     {bone_name: "R_Arm_Inner", X: 0, Y: 0, Z: 0},
     {bone_name: "R_Arm_Outer", X: 0, Y: 0, Z: 0},
-    {bone_name: "Back_Upper" , X: 0, Y: 0, Z: 0},
+    {bone_name: "N/A" , X: 0, Y: 0, Z: 0},
+    //{bone_name: "Back_Upper" , X: 0, Y: 0, Z: 0},
 ];
 
 // Setup HTTP server
@@ -75,10 +76,12 @@ server.on('message', (message, rinfo) => {
             var yaw   = ((value / 1625) % 1625) * 360 / 1625 - 180;
             var roll  =  (value % 1625)         * 360 / 1625 - 180;
 
+            //if (i == 5) {
             // Flip X axis, and make sure that the result value is between -180 and 180
             roll = roll + 180;
             if (roll > 180)
                 roll = roll - 360;
+            //}
 
             // Reduce rotation of the upper arm from the rotation of the lower arm,
             // since the IMU values are relative to the starting point of the IMU,
@@ -127,6 +130,10 @@ function logMessageRate()
 {
     console.log("Receiving %d messages per second", counter / 10);
     counter = 0;
+    // ping all clients to keep the connections alive
+    wss.clients.forEach((client) => {
+        client.send("ping");
+    });
     setTimeout(logMessageRate, 10000);
 }
 setTimeout(logMessageRate, 10000);
