@@ -5,6 +5,11 @@
   Based on https://github.com/sparkfun/SparkFun_MPU-9250_Breakout_Arduino_Library
 */
 
+const char *SSID = "aalto open";
+const char *PASSWORD = "";
+const char *udpAddress = "195.148.124.218";
+const int udpPort = 8082;
+
 #include "quaternionFilters_FW2.h"
 #include "MPU9250_FW2.h"
 
@@ -30,11 +35,6 @@
 MPU9250 IMU[N_IMUS] = {MPU9250(16)};
 Quaternion Quat[N_IMUS];
 WiFiUDP udp;
-
-const char *SSID = "aalto open";
-const char *PASSWORD = "";
-const char *udpAddress = "195.148.124.218";
-const int udpPort = 8082;
 
 bool connected = false;
 
